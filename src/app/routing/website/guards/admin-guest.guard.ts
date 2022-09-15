@@ -11,13 +11,13 @@ export class AdminGuestGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return confirm('Are you guest (activate)?');
+    return true;
   }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    return confirm('Are you guest (load)?');
+    return true;
   }
 
 }

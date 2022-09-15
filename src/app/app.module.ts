@@ -9,6 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {environment} from "../environments/environment";
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreRouterConnectingModule} from '@ngrx/router-store';
+import {AdminAuthStoreModule} from "./store/admin-auth-store/admin-auth-store.module";
+import {EffectsModule} from "@ngrx/effects";
+import {AdminAuthEffects} from "./store/admin-auth-store/store/admin-auth.effects";
 
 @NgModule({
   declarations: [
@@ -20,9 +25,13 @@ import { reducers, metaReducers } from './reducers';
     RouterModule,
     WebsiteModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
+    StoreModule.forRoot( {}, {
     }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot(),
+    AdminAuthStoreModule,
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([AdminAuthEffects])
     ///StoreModule.forRoot({}, {}),
    // StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],

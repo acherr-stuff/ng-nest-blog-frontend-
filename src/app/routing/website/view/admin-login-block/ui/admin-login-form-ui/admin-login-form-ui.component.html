@@ -13,10 +13,8 @@
   </mat-form-field>
 
   <button mat-raised-button color="primary"
-    [disabled]="formGroup.invalid || !!formError"
+    [disabled]="disabled || formGroup.invalid || !!formError"
   >Войти</button>
-  <mat-error *ngIf="formGroup.hasError('required','password')">{{formError}}</mat-error>
-  {{formGroup.get('login').errors | json}}
-  {{formGroup.getError('required','login')}}
-  {{formGroup.getError('required','password')}}
+  <mat-error *ngIf="formError">{{formError}}</mat-error>
+
 </form>

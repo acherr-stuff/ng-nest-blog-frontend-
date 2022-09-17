@@ -10,15 +10,11 @@ import {getAccessToken} from "../store/admin-auth.selectors";
   providedIn: 'root'
 })
 export class AdminAuthService {
-    accessToken?: string;
 
   constructor(
       private httpClient:  HttpClient,
       private jwtHelperService: JwtHelperService,
-      private store$: Store
   ) {
-      this.store$.pipe(select(getAccessToken))
-          .subscribe(accessToken => this.accessToken = accessToken )
   }
 
   login(body: {login: string, password: string}): Observable<{ accessToken: string }> {

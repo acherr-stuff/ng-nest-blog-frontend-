@@ -14,6 +14,7 @@ import { StoreRouterConnectingModule} from '@ngrx/router-store';
 import {AdminAuthStoreModule} from "./store/admin-auth-store/admin-auth-store.module";
 import {EffectsModule} from "@ngrx/effects";
 import {AdminAuthEffects} from "./store/admin-auth-store/store/admin-auth.effects";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [

@@ -3,7 +3,12 @@ import {Login, LoginFailed, LoginSuccess} from "./admin-auth.actions";
 export const ADMIN_AUTH_FEATURE_NAME = "admin-auth"
 
 export interface AuthData {
-    accessToken: string
+    accessToken: string;
+    // admin id in mysql
+     id: number;
+     iat: number;
+    // //expiring timestamp
+     exp: number
 }
 
 export interface AdminAuthState {
@@ -19,18 +24,25 @@ const initialState: AdminAuthState = {
     serverError: ''
 }
 
+// @ts-ignore
+// @ts-ignore
 export const adminAuthReducer = createReducer(
     initialState,
     on(Login, state => ({
         ...state,
         loading: true
     })),
-    on(LoginSuccess, (state, authData: AuthData) => ({
+    //@ts-ignore
+    on(LoginSuccess, (
+        state, {
+            type,
+            ...authData
+        }: {type: string} & AuthData) => ({
         ...state,
-        authData: authData,
+        authData,
         loaded: true,
         loading: false,
-        serverError: ""
+        serverError: ''
     })),
     on(LoginFailed, (state, {serverError}) => ({
         ...state,
